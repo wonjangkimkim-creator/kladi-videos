@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>클라디수학 반포 해설영상</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f6fa;--panel:#ffffff;--ink:#14213a;--sub:#5d6b82;--line:#e2e7ef;
+  --brand:#1f3a5f;--accent:#f2a33a;--chip:#eef2f8;--chipOn:#1f3a5f;--chipOnInk:#fff;
+  --hi:#d9480f;--mid:#1971c2;--pend:#9aa5b5;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1522;--panel:#162033;--ink:#e8edf5;--sub:#9aa8be;--line:#25324a;
+    --brand:#2c4f80;--chip:#1d2a40;--chipOn:#f2a33a;--chipOnInk:#14213a;--pend:#5f6c80;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header{background:var(--brand);color:#fff}
+header .wrap{display:flex;align-items:center;gap:12px;padding:18px 16px}
+.logo{width:38px;height:38px;border-radius:10px;background:var(--accent);color:#14213a;display:grid;place-items:center;font-weight:900;font-size:20px}
+header h1{margin:0;font-size:18px;font-weight:700;letter-spacing:-.3px}
+header p{margin:2px 0 0;font-size:12.5px;opacity:.75}
+header .out{margin-left:auto;background:none;border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:8px;padding:6px 10px;font:inherit;font-size:12.5px;cursor:pointer}
+
+/* lock */
+#lock{min-height:100vh;display:grid;place-items:center;padding:16px}
+.lockbox{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:32px 26px;width:100%;max-width:360px;text-align:center;box-shadow:0 10px 40px rgba(20,33,58,.08)}
+.lockbox .logo{margin:0 auto 14px;width:52px;height:52px;font-size:26px;border-radius:14px}
+.lockbox h2{margin:0 0 4px;font-size:19px}
+.lockbox p{margin:0 0 20px;color:var(--sub);font-size:13.5px}
+.lockbox input[type=password]{width:100%;padding:13px 14px;border:1.5px solid var(--line);border-radius:10px;font:inherit;font-size:16px;background:var(--bg);color:var(--ink);text-align:center;letter-spacing:2px}
+.lockbox input:focus{outline:none;border-color:var(--accent)}
+.lockbox button{margin-top:12px;width:100%;padding:13px;border:0;border-radius:10px;background:var(--brand);color:#fff;font:inherit;font-weight:700;font-size:15px;cursor:pointer}
+.lockbox label{display:flex;gap:6px;align-items:center;justify-content:center;margin-top:14px;font-size:13px;color:var(--sub)}
+.err{color:var(--hi);font-size:13px;min-height:18px;margin-top:10px}
+
+/* app */
+.tools{position:sticky;top:0;z-index:5;background:var(--bg);padding:14px 0 10px;border-bottom:1px solid var(--line)}
+.search{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font:inherit;font-size:15px;background:var(--panel);color:var(--ink)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-top:10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:0;background:var(--chip);color:var(--ink);padding:7px 12px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.chip.on{background:var(--chipOn);color:var(--chipOnInk);font-weight:700}
+.count{font-size:12.5px;color:var(--sub);margin:14px 0 4px}
+.group h3{font-size:15px;margin:22px 0 10px;display:flex;gap:8px;align-items:baseline}
+.group h3 small{font-weight:400;color:var(--sub);font-size:12.5px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 15px;display:flex;gap:12px;align-items:flex-start;cursor:pointer;transition:transform .12s,border-color .12s;text-align:left;font:inherit;color:inherit;width:100%}
+.card:hover{transform:translateY(-1px);border-color:var(--accent)}
+.card.pending{cursor:default;opacity:.62}
+.card.pending:hover{transform:none;border-color:var(--line)}
+.play{flex:none;width:42px;height:42px;border-radius:50%;background:var(--brand);display:grid;place-items:center}
+.pending .play{background:var(--pend)}
+.play svg{width:16px;height:16px;fill:#fff;margin-left:2px}
+.meta{min-width:0;flex:1}
+.num{font-weight:700;font-size:15px}
+.topic{font-size:13.5px;color:var(--sub);margin-top:2px;line-height:1.4}
+.tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.tag{font-size:11.5px;padding:2px 7px;border-radius:5px;background:var(--chip);color:var(--sub)}
+.tag.hi{background:rgba(217,72,15,.12);color:var(--hi);font-weight:700}
+.tag.mid{background:rgba(25,113,194,.12);color:var(--mid);font-weight:700}
+.tag.ans{background:rgba(242,163,58,.16);color:#b86e00}
+.empty{padding:50px 0;text-align:center;color:var(--sub)}
+footer{padding:30px 0 40px;text-align:center;color:var(--sub);font-size:12px}
+
+/* modal */
+#modal{position:fixed;inset:0;background:rgba(5,10,20,.82);display:none;align-items:center;justify-content:center;z-index:20;padding:16px}
+#modal.open{display:flex}
+.mbox{width:100%;max-width:960px}
+.mhead{display:flex;align-items:center;color:#fff;margin-bottom:10px;gap:10px}
+.mhead b{font-size:15px}
+.mhead a{margin-left:auto;color:#fff;opacity:.8;font-size:13px}
+.mhead button{background:none;border:0;color:#fff;font-size:26px;cursor:pointer;line-height:1}
+.vid{position:relative;padding-top:56.25%;background:#000;border-radius:10px;overflow:hidden}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<section id="lock">
+  <form class="lockbox" id="lockForm" autocomplete="off">
+    <div class="logo">K</div>
+    <h2>클라디수학 반포</h2>
+    <p>선생님 전용 해설영상 라이브러리</p>
+    <input type="password" id="pw" placeholder="비밀번호" autofocus>
+    <button type="submit" id="go">들어가기</button>
+    <label><input type="checkbox" id="remember" checked> 이 기기에서 기억하기</label>
+    <div class="err" id="err"></div>
+  </form>
+</section>
+
+<div id="app" hidden>
+  <header><div class="wrap">
+    <div class="logo">K</div>
+    <div><h1>클라디수학 반포 해설영상</h1><p>선생님 전용 · 외부 공유 금지</p></div>
+    <button class="out" id="logout">잠그기</button>
+  </div></header>
+  <div class="wrap">
+    <div class="tools">
+      <input class="search" id="q" placeholder="학교, 번호, 주제로 검색 (예: 로그, 경원중 22)">
+      <div class="chips" id="schoolChips"></div>
+      <div class="chips" id="subjectChips"></div>
+    </div>
+    <div class="count" id="count"></div>
+    <div id="list"></div>
+  </div>
+  <footer>클라디수학학원 반포 · 업데이트 <span id="updated"></span></footer>
+</div>
+
+<div id="modal">
+  <div class="mbox">
+    <div class="mhead"><b id="mtitle"></b><a id="mlink" target="_blank" rel="noopener">유튜브에서 열기 ↗</a><button id="mclose" aria-label="닫기">×</button></div>
+    <div class="vid"><iframe id="frame" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+  </div>
+</div>
+
+<script>
+const P = {"salt": "FL8TfDIHfN/YLNur11HzmA==", "iv": "mmMz+/61dY0Af764", "iter": 250000, "ct": "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"};
+const KEY='kladi_lib_pw';
+const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function unlock(pw){
+  const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
+  const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(P.salt),iterations:P.iter,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
+  const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(P.iv)},key,b64(P.ct));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+function store(k,v){try{v==null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}}
+function load(k){try{return localStorage.getItem(k)}catch(e){return null}}
+
+let DATA=null, fSchool='전체', fSubject='전체';
+async function tryOpen(pw,remember){
+  try{
+    const d=await unlock(pw);
+    DATA=d; if(remember) store(KEY,pw); else store(KEY,null);
+    document.getElementById('lock').hidden=true;
+    document.getElementById('app').hidden=false;
+    init(); return true;
+  }catch(e){ return false; }
+}
+document.getElementById('lockForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const btn=document.getElementById('go'); btn.disabled=true; btn.textContent='확인 중…';
+  const ok=await tryOpen(document.getElementById('pw').value,document.getElementById('remember').checked);
+  btn.disabled=false; btn.textContent='들어가기';
+  if(!ok){document.getElementById('err').textContent='비밀번호가 맞지 않습니다.';document.getElementById('pw').select();}
+});
+document.getElementById('logout').onclick=()=>{store(KEY,null);location.reload();};
+(async()=>{const s=load(KEY); if(s && !(await tryOpen(s,true))) store(KEY,null);})();
+
+function chipRow(el,items,cur,set){
+  el.innerHTML='';
+  ['전체',...items].forEach(v=>{
+    const b=document.createElement('button');b.className='chip'+(v===cur?' on':'');b.textContent=v;
+    b.onclick=()=>{set(v);render();};el.appendChild(b);
+  });
+}
+function uniq(a){return [...new Set(a.filter(Boolean))]}
+function ytId(u){const m=(u||'').match(/youtu\.be\/([\w-]{6,})/)||(u||'').match(/[?&]v=([\w-]{6,})/);return m?m[1]:null}
+function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+function init(){
+  document.getElementById('updated').textContent=DATA.updated;
+  document.getElementById('q').oninput=render;
+  render();
+}
+function render(){
+  const V=DATA.videos;
+  chipRow(document.getElementById('schoolChips'),uniq(V.map(v=>v.school)),fSchool,v=>fSchool=v);
+  chipRow(document.getElementById('subjectChips'),uniq(V.map(v=>v.subject)),fSubject,v=>fSubject=v);
+  const q=document.getElementById('q').value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const list=V.filter(v=>(fSchool==='전체'||v.school===fSchool)&&(fSubject==='전체'||v.subject===fSubject)
+    &&q.every(t=>[v.exam,v.school,v.grade,v.subject,v.number,v.topic].join(' ').toLowerCase().includes(t)));
+  const ready=list.filter(v=>v.link).length;
+  document.getElementById('count').textContent=`${list.length}편 · 바로 보기 ${ready}편`;
+  const groups={};
+  list.forEach(v=>{const k=`${v.exam}|${v.school} ${v.grade}`;(groups[k]=groups[k]||[]).push(v)});
+  const box=document.getElementById('list');
+  if(!list.length){box.innerHTML='<div class="empty">조건에 맞는 영상이 없습니다.</div>';return;}
+  box.innerHTML=Object.entries(groups).map(([k,vs])=>{
+    const [exam,sch]=k.split('|');
+    return `<div class="group"><h3>${esc(sch)} <small>${esc(exam)} · ${vs.length}편</small></h3><div class="grid">`+
+    vs.map((v,i)=>{
+      const lv=v.level==='최상'?'<span class="tag hi">최상</span>':v.level==='상'?'<span class="tag mid">상</span>':'';
+      return `<button class="card${v.link?'':' pending'}" data-i="${V.indexOf(v)}">
+        <span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span>
+        <span class="meta"><div class="num">${esc(v.subject)} ${esc(v.number)}</div>
+        <div class="topic">${esc(v.topic||'')}</div>
+        <div class="tags">${lv}${v.answer?`<span class="tag ans">정답 ${esc(v.answer)}</span>`:''}${v.duration?`<span class="tag">${esc(v.duration)}</span>`:''}${v.link?'':'<span class="tag">업로드 예정</span>'}</div></span>
+      </button>`}).join('')+`</div></div>`;
+  }).join('');
+  box.querySelectorAll('.card').forEach(c=>c.onclick=()=>openV(V[+c.dataset.i]));
+}
+function openV(v){
+  const id=ytId(v.link); if(!id) return;
+  document.getElementById('mtitle').textContent=`${v.school} ${v.grade} ${v.subject} ${v.number}`;
+  document.getElementById('mlink').href=v.link;
+  document.getElementById('frame').src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+  document.getElementById('modal').classList.add('open');
+}
+function closeV(){document.getElementById('modal').classList.remove('open');document.getElementById('frame').src='about:blank';}
+document.getElementById('mclose').onclick=closeV;
+document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')closeV();};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeV();});
+</script>
+</body>
+</html>
